@@ -184,7 +184,7 @@ Tutorial
 
 ### Files to Edit
 
-+ CmakeLists.txt
++ CMakeLists.txt
 + tutorial.cxx
 
 ### Getting Started

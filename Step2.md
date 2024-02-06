@@ -59,7 +59,7 @@ cmake --build .
 
 在`MathFunctions`目录下的`CMakeLists.txt`文件中，我们使用`add_library()`创建一个名为`MathFunctions`的库对象， 库的源文件作为参数传递给`add_library()`。看起来如下：
 
-+ > `TODO1：`MathFunctions/CmakeLists.txt
++ > `TODO1：`MathFunctions/CMakeLists.txt
     ```shell
     add_library(MathFunctions MathFunctions.cxx mysqrt.cxx)
     ```
