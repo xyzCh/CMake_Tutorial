@@ -13,7 +13,7 @@
 > **注意：**  
 > 尽管CMake命令支持大写、小写和大小写混合，但小写命令作为首选并在整改教程中使用。
 
-任何一个项目的CMakeLIsts.txt最顶部必须使用`cmake_minimum_required()`命令指定CMake的最小版本。这将建立策略设置，并确保接下来的CMake函数使用兼容版本的CMake运行。
+任何一个项目的CMakeLists.txt最顶部必须使用`cmake_minimum_required()`命令指定CMake的最小版本。这将建立策略设置，并确保接下来的CMake函数使用兼容版本的CMake运行。
 
 要开始一个项目，我们使用`project()`命令去设置项目名称。每个项目都需要调用此命令，并且应该在`cmake_minimum_requred()`之后不久调用。稍后我们将会看到，此命令还可以用于指定其它的项目级别的信息，例如语言和版本号。
 
