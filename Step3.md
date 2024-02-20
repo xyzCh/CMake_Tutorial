@@ -57,7 +57,7 @@ cmake --build .
 在`MathFunctions/CMakeLists.txt`末尾，使用`target_include_directories()`和`INTERFACE`关键字，如下:
 
 + > `TODO1：`MathFunction/CMakeLists.txt
-    ```shell
+    ```cmake
     target_include_directories(MathFunctions
         INTERFACE ${CMAKE_CURRENT_SOURCE_DIR}
     )
@@ -68,14 +68,14 @@ cmake --build .
 删除此行：
 
 + > `TODO2：` 'CMakeLists.txt'
-    ```shell
+    ```cmake
     list(APPEND EXTRA_INCLUDES "${PROJECT_SOURCE_DIR}/MathFunctions")
     ```
 
 从`target_include_directories()`中删除`EXTRA_INCLUDE`：
 
 + > `TODO3：`CMakeLists.txt
-    ```shell
+    ```cmake
     target_include_directories(Tutorial PUBLIC
         "${PROJECT_BINARY_DIR}"
     )
@@ -132,8 +132,7 @@ cmake --build .
 首先，我们需要删除变量`CMAKE_CXX_STANDARD`和`CMAKE_CXX_STANDARD_REQUIRED`上的两个`set()`调用。具体要删除的行如下:
 
 + > CMakeLists.txt
-    ```shell
-    CMakeLists.txt¶
+    ```cmake
     set(CMAKE_CXX_STANDARD 11)
     set(CMAKE_CXX_STANDARD_REQUIRED True)
     ```
@@ -141,7 +140,7 @@ cmake --build .
 接下来我们需要创建一个名为`tutorial_comilper_flags`的`INTERFACE`库，然后使用`target_compile_features()`来添加`cxx_std_11`编译器特性。
 
 + > `TODO4：`CMakeLists.txt
-    ```shell
+    ```cmake
     add_library(tutorial_compiler_flags INTERFACE)
     target_compile_features(tutorial_compiler_falgs INTERFACE cxx_std_11)
     ```
@@ -149,17 +148,17 @@ cmake --build .
 最后，设置好`INTERFACE`库，我们需要连接执行`Tutorial`、`SqrtLibrary`库、`MathFunctions`库连接到新的`tutorial_compiler_flags`库，代码分别如下。
 
 + > `TODO5：`CMakeLists.txt
-    ```shell
+    ```cmake
     target_link_libraries(Tutorial PUBLIC MathFunctions tutorial_compiler_flags)
     ```
 
 + > `TODO6：`MathFunctions/CMakeLists.txt
-    ```shell
+    ```cmake
     target_link_libraries(SqrtLibrary PUBLIC tutorial_compiler_flags)
     ```
 
 + > `TODO7：`CMakeLists.txt
-    ```shell
+    ```cmake
     target_link_libraries(MathFunctions PUBLIC tutorial_compiler_flags)
     ```
 

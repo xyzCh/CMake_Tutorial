@@ -60,28 +60,28 @@ cmake --build .
 在`MathFunctions`目录下的`CMakeLists.txt`文件中，我们使用`add_library()`创建一个名为`MathFunctions`的库对象， 库的源文件作为参数传递给`add_library()`。看起来如下：
 
 + > `TODO1：`MathFunctions/CMakeLists.txt
-    ```shell
+    ```cmake
     add_library(MathFunctions MathFunctions.cxx mysqrt.cxx)
     ```
 
 为了使用新库，我们将在顶级`CMakeLists.txt`文件中添加·add_subdirectory()·调用，以便库将被构建。
 
 + > `TODO2：`CMakeLists.txt
-    ```shell
+    ```cmake
     add_subdirectory(MathFunctions)
     ```
 
 接下来，使用`target_link_libraries()`把库连接到可执行文件。
 
 + > `TODO3：`CMakeLists.txt
-    ```shell
+    ```cmake
     target_link_libraries(Tutorial PUBLIC MathFunctions)
     ```
 
 最后我们需要指定库的头文件位置。修改`target_include_directories()`来添加`MathFunctions`子目录作为一个include目录以便`MathFunctions.h`头文件可以被找到。
 
 + > `TODO4：`CMakeLists.txt
-    ```shell
+    ```cmake
     target_include_directories(Tutorial PUBLIC
         "${PROJECT_BINARY_DIR}"
         "${PROJECT_SOURCE_DIR}/MathFunctions"
@@ -161,7 +161,7 @@ cmake --build .
 第一步是添加一个选项到`MathFunctions/CMakeLists.txt`。该选项将显示在`cmake-gui`和`ccmake`中，默认值为`ON`，可由用户更改。
 
 + > `TODO7：`MathFunctions/CMakeLists.txt
-    ```shell
+    ```cmake
     options(USE_MYMATH "Use tutorial provided math implementation" ON)
     ```
 
@@ -170,7 +170,7 @@ cmake --build .
 创建一个检查`USE_MYMATH`的`if()`语句，在`if()`块中，将`target_compile_definitions()`命令和编译定义`USE_MYMATH`放在一起。
 
 + > `TODO8：`MathFunctions/CMakeLists.txt
-    ```shell
+    ```cmake
     if (USE_MYMATH)
         target_compile_definitions(MathFunctions PRIVATE "USE_MYMATH")
     endif()
@@ -211,7 +211,7 @@ cmake --build .
 首先，在`USE_MYMATH`中创建一个名为`SqrtLibrary`的库，其源代码为`mysqrt.cxx`。
 
 + > `TODO12：`MathFunctions/CMakeLists.txt
-    ```shell
+    ```cmake
     add_library(SqrtLibrary STATIC
         mysqrt.cxx
     )
@@ -220,14 +220,14 @@ cmake --build .
 接下来，当`USE_MYMATH`启用时，我们把`SqrtLibrary`链接到`MathFunctions`。
 
 + > `TODO13：`MathFunctions/CMakeLists.txt
-    ```shell
+    ```cmake
     target_link_libraries(MathFunctions PRIVATE SqrtLibrary)
     ```
 
 最后，我们可以从`MathFunctions`库的源文件列表中移除`mysqrt.cxx`，因为它将在包含`SqrtLibrary`时被拉入。
 
 + > `TODO14：`MathFunctions/CMakeLists.txt
-    ```shell
+    ```cmake
     add_library(MathFunctions MathFunctions.cxx)
     ```
 

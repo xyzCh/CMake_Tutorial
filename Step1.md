@@ -84,21 +84,21 @@ Tutorial
 如上所述，一个三行的`CMakeLists.txt`文件是我们启动和运行的所有内容。如下所示，第一行我们使用`cmake_minimum_requred()`去设置CMake版本：
   
 + > `TODO1`： CMakeLists.txt
-    ```shell
+    ```cmake
     cmake_minimum_required(VERSION 3.10)
     ```
 
 下一步创建基本工程，使用`project()`命令设置工程名称，如下所示：
 
 + > `TODO2`：CMakeLists.txt
-    ```shell
+    ```cmake
     project(Tutorial)
     ```
     
 最后一个命令为`add_executable()`，如下所示：
 
 + > `TODO3`：CMakeLists.txt
-    ```shell
+    ```cmake
     add_executable(Tutorial tutorial.cxx)
     ```
 
@@ -158,7 +158,7 @@ Tutorial
 我们需要在CMake代码中明确声明它应该使用正确的标志。在CMake中启用对特定C++标准支持的一种方法是使用`CMAKE_CXX_STANDARD`变量。对于本教程，在`CMakeLists.txt`中将`CMake_CXX_STANDARD`设置为`11`,`CMAKE_CXX_STANDARD_REQUIRED`设置为`True`。确保`在add_executable()`调用的上方添加`CMAKE_CXX_STANDARD`声明。
 
 + > `TODO6`：CMakeLists.txt
-    ```shell
+    ```cmake
     set(CMAKE_CXX_STANDARD 11)
     set(CMAKE_CXX_STANDARD_REQUIRED True)
     ```
@@ -212,15 +212,15 @@ cmake --build .
 首先，我们修改`CMakeLists.txt`文件，使用`project()`命令设置项目名称和版本号。当`project()`命令被调用时，CMake在后台定义`Tutorial_VERSION_MAJOR`和`Tutorial_VERSION_MINOR`。
 
 + > `TOOD7`：CMakeLists.txt
-    ```shell
+    ```cmake
     project(Tutorial VERSION 1.0)
     ```
 
 然后我们使用`configure_file()`复制输入文件，替换指定的CMake变量：
 
 + > `TODO8`：CMakeLists.txt
-    ```shell
-    configure_file (TutorialConfig.h.in TutorialConfig.h)
+    ```cmake
+    configure_file(TutorialConfig.h.in TutorialConfig.h)
     ```
 
 由于配置的文件将被写入项目二进制目录，我们必须将该目录添加到搜索头文件的路径列表中。
@@ -231,7 +231,7 @@ cmake --build .
 我们使用`target_include_directories()`来指定可执行目标应该在哪里查找头文件。
 
 + > `TODO9`: CMakeLists.txt
-    ```shell
+    ```cmake
     target_include_directories(Tutorial PUBLIC "${PROJECT_BINARY_DIR}")
     ```
 
