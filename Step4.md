@@ -39,7 +39,7 @@
 
 ### Build and Run
 
-新建一个`Step4_build`目录，运行`cmake`可执行文件或`cmake-gui`去配置项目，然后从构建目录使用你选择的构建工具或`cmake --build .`去构建它。
+新建一个`Step4_build`目录，运行`cmake`可执行文件或`cmake-gui`来配置项目，然后从构建目录使用你选择的构建工具或`cmake --build .`去构建它。
 
 ```shell
 mkdir Step4_build
